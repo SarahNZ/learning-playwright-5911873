@@ -12,8 +12,8 @@ dotenv.config({ path: path.resolve(__dirname, ".env") });
  * See https://playwright.dev/docs/test-configuration.
  */
 export default defineConfig({
-  timeout: 30_000,
-  globalTimeout: 10 * 60 * 1000,
+  timeout: 30_000, // 30s
+  globalTimeout: 10 * 60 * 1000, // if all the tests take more than 10 minutes, will fail
   testDir: "./tests",
   /* Run tests in files in parallel */
   fullyParallel: true,
@@ -31,7 +31,7 @@ export default defineConfig({
     baseURL: "https://practicesoftwaretesting.com",
     testIdAttribute: "data-test",
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
-    trace: "on",
+    trace: "on", // trace is always on, rather than just on retries
     actionTimeout: 0,
     ignoreHTTPSErrors: true,
     video: "retain-on-failure",
@@ -49,7 +49,8 @@ export default defineConfig({
       name: "chromium",
       dependencies: ["setup"],
       use: { ...devices["Desktop Chrome"], permissions: ["clipboard-read"] },
-    },
+    }
+    //,
     // {
     //   name: 'firefox',
     //   dependencies: ["setup"],
