@@ -29,6 +29,9 @@ export default defineConfig({
   use: {
     /* Base URL to use in actions like `await page.goto('/')`. */
     baseURL: "https://practicesoftwaretesting.com",
+    /* The default testId for Playwright is 'data-testid'
+    The above config change will use 'data-test' as this is what the
+    test website uses */
     testIdAttribute: "data-test",
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: "on", // trace is always on, rather than just on retries
@@ -49,7 +52,7 @@ export default defineConfig({
       name: "chromium",
       dependencies: ["setup"],
       use: { ...devices["Desktop Chrome"], permissions: ["clipboard-read"] },
-    }
+    },
     //,
     // {
     //   name: 'firefox',
