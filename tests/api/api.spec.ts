@@ -1,21 +1,22 @@
 import { test, expect } from "@playwright/test";
 
+const baseApiUrl = "https://api.practicesoftwaretesting.com";
+
 test("GET /products", async ({ request }) => {
-  const apiUrl = "https://api.practicesoftwaretesting.com";
-  const response = await request.get(apiUrl + "/products");
+  const response = await request.get(baseApiUrl + "/products");
 
   expect(response.status()).toBe(200);
   const body = await response.json();
   expect(body.data.length).toBe(9);
   expect(body.total).toBe(50);
+  // console.log(body);
 });
 
 test("POST /users/login", async ({ request }) => {
-  const apiUrl = "https://api.practicesoftwaretesting.com";
-  const response = await request.post(apiUrl + "/users/login", {
+  const response = await request.post(baseApiUrl + "/users/login", {
     data: {
-      email: "customer@practicesoftwaretesting.com",
-      password: "welcome01",
+      email: "customer3@practicesoftwaretesting.com",
+      password: "pass123",
     },
   });
 
