@@ -43,7 +43,7 @@ test.describe("Home page with no auth", () => {
 });
 
 test.describe("Home page customer 01 auth", () => {
-  test.use({ storageState: ".auth/customer01.json" });
+  test.use({ storageState: ".auth/customer03.json" });
   test.beforeEach(async ({ page }) => {
     await page.goto(baseUrl);
   });
