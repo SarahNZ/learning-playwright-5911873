@@ -1,10 +1,10 @@
 import { test as setup, expect } from "@playwright/test";
 
-setup("Create customer 01 auth", async ({ page, context }) => {
-  const email = "customer@practicesoftwaretesting.com";
-  const password = "welcome01";
-  const username = "Jane Doe";
-  const customer01AuthFile = ".auth/customer01.json";
+setup("Create customer 03 auth", async ({ page, context }) => {
+  const email = "customer3@practicesoftwaretesting.com";
+  const password = "pass123";
+  const username = "Bob Smith";
+  const customer03AuthFile = ".auth/customer03.json";
 
   await page.goto("https://practicesoftwaretesting.com/auth/login");
 
@@ -15,5 +15,5 @@ setup("Create customer 01 auth", async ({ page, context }) => {
   await expect(page.getByTestId("nav-menu")).toContainText(username);
 
   // Save authentication state to file
-  await context.storageState({ path: customer01AuthFile });
+  await context.storageState({ path: customer03AuthFile });
 });
