@@ -12,6 +12,9 @@ test("GET /products", async ({ request }) => {
   // console.log(body);
 });
 
+// Get a product with a specific ID and validate the information returned is correct
+// Note the product IDs get updated every 2 hours. Need to find a way to get the current product ID reliably
+
 test("POST /users/login", async ({ request }) => {
   const response = await request.post(baseApiUrl + "/users/login", {
     data: {
