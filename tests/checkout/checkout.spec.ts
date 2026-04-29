@@ -2,7 +2,7 @@ import { test, expect } from "@playwright/test";
 
 const username = "Bob Smith";
 
-test.describe("E2E - Buy products", () => {
+test.describe("E2E checkout by authorized user", async () => {
   test.use({ storageState: ".auth/customer03.json" });
 
   test.beforeEach(async ({ page }) => {
