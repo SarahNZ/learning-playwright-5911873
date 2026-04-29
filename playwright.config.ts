@@ -44,15 +44,13 @@ export default defineConfig({
 
   /* Configure projects for major browsers */
   projects: [
-    // {
-    //   name: "setup",
-    //   testMatch: /.*\.setup\.ts/,
-    // },
+    {
+      name: "setup",
+      testMatch: /.*\.setup\.ts/,
+    },
     {
       name: "chromium",
-      // Can't log into the website as the test user as too many failed attempts :(
-      // Try again tomorrow :)
-      // dependencies: ["setup"],
+      dependencies: ["setup"],
       use: { ...devices["Desktop Chrome"], permissions: ["clipboard-read"] },
     },
     //,
