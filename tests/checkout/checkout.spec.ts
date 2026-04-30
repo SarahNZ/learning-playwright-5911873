@@ -6,7 +6,7 @@ test.describe("E2E checkout by authorized user", async () => {
   test.use({ storageState: ".auth/customer03.json" });
 
   test.beforeEach(async ({ page }) => {
-    await page.goto("/");
+    await page.goto("https://practicesoftwaretesting.com");
     await expect(page.getByTestId("nav-menu")).toContainText(username);
     await page.getByTestId("nav-home").click();
     await expect(
@@ -14,7 +14,10 @@ test.describe("E2E checkout by authorized user", async () => {
     ).toBeVisible();
   });
 
-  test("Auth user purchases a product using buy now", async ({ page }) => {
+  test("Auth user purchases a product using buy now", async ({
+    page,
+    headless,
+  }) => {
     await test.step("Search for a product and check result", async () => {
       await page.getByTestId("search-query").fill("thor hammer");
       await page.getByTestId("search-submit").click();
@@ -91,15 +94,20 @@ test.describe("E2E checkout by authorized user", async () => {
         await expect(page.getByTestId("payment-success-message")).toBeVisible();
       });
 
-      await test.step("Visual test for final payment page", async () => {
-        await page.waitForLoadState("networkidle");
-        await expect(page).toHaveScreenshot(
-          "checkout-page-payment-successful-customer_03.png",
-          {
-            mask: [page.getByTitle("Practice Software Testing - Toolshop")],
-          },
-        );
-      });
+      // Headless is better for running visual tests
+      headless
+        ? await test.step("Visual test for final payment page", async () => {
+            await page.waitForLoadState("networkidle");
+            await expect(page).toHaveScreenshot(
+              "checkout-page-payment-successful-customer_03.png",
+              {
+                mask: [page.getByTitle("Practice Software Testing - Toolshop")],
+              },
+            );
+          })
+        : console.log(
+            "Running in Headed mode, no screenshot comparison because the pixels diffs will be too much",
+          );
 
       await test.step("Sign out", async () => {
         await page.getByRole("button", { name: /Bob Smith/i }).click();
