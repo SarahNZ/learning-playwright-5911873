@@ -16,8 +16,7 @@ test.describe("E2E checkout by authorized user", async () => {
 
   test("Auth user purchases a product using buy now", async ({
     page,
-    headless,
-  }) => {
+  }, headless) => {
     await test.step("Search for a product and check result", async () => {
       await page.getByTestId("search-query").fill("thor hammer");
       await page.getByTestId("search-submit").click();
