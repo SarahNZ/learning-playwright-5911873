@@ -37,7 +37,7 @@ export default defineConfig({
     trace: "on", // trace is always on, rather than just on retries
     actionTimeout: 0,
     ignoreHTTPSErrors: true,
-    video: "retain-on-failure",
+    video: "retain-on-failure", // Can change to "on" if we want videos for all tests run
     screenshot: "only-on-failure",
     headless: true,
   },
