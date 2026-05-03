@@ -1,21 +1,22 @@
 import { test, expect } from "@playwright/test";
 
 const baseUrl = "https://practicesoftwaretesting.com/";
-const username = "Jane Doe";
+const username = "Bob Smith";
 
-test.describe("Home page with no auth", () => {
+test.describe("Home page with no auth", async () => {
   test.beforeEach(async ({ page }) => {
     await page.goto(baseUrl);
   });
-
-  // Visual tests had too much pixel drift between runs, so commenting out.
-  // But leaving here for future reference
-  // test("Visual test with no auth", async ({ page }) => {
-  //   await page.waitForLoadState("networkidle");
-  //   await expect(page).toHaveScreenshot("home-page-no-auth.png", {
-  //     mask: [page.getByTitle("Practice Software Testing - Toolshop")],
-  //   });
-  // });
+  test("Visual test with no auth", async ({ page }, headless) => {
+    await page.waitForLoadState("networkidle");
+    headless
+      ? await expect(page).toHaveScreenshot("home-page-no-auth.png", {
+          mask: [page.getByTitle("Practice Software Testing - Toolshop")],
+        })
+      : console.log(
+          "Running in headed model. Screenshot not taken as test would likely fail due to too much pixel drift",
+        );
+  });
 
   test("Check sign in", async ({ page }) => {
     // Ensure the sign-in link is present
@@ -48,14 +49,16 @@ test.describe("Home page customer 01 auth", () => {
     await page.goto(baseUrl);
   });
 
-  // Visual tests had too much pixel drift between runs, so commenting out.
-  // But leaving here for future reference
-  // test("Visual test authorized", async ({ page }) => {
-  //   await page.waitForLoadState("networkidle");
-  //   await expect(page).toHaveScreenshot("home-page-customer_01.png", {
-  //     mask: [page.getByTitle("Practice Software Testing - Toolshop")],
-  //   });
-  // });
+  test("Visual test authorized", async ({ page }, headless) => {
+    await page.waitForLoadState("networkidle");
+    headless
+      ? await expect(page).toHaveScreenshot("home-page-customer_01.png", {
+          mask: [page.getByTitle("Practice Software Testing - Toolshop")],
+        })
+      : console.log(
+          "No screenshot taken as the test is running in headed mode. The test would likely have failed due to pixel drift",
+        );
+  });
 
   test("Check customer 01 is signed in", async ({ page }) => {
     // await expect(page.getByTestId("navi-sign-in")).not.toBeVisible();
