@@ -1,7 +1,4 @@
 import { type Locator, type Page } from "@playwright/test";
-
-const baseUrl = "https://practicesoftwaretesting.com";
-
 export class LoginPage {
   readonly page: Page;
   readonly emailInput: Locator;
@@ -15,7 +12,7 @@ export class LoginPage {
   }
 
   async goto() {
-    await this.page.goto(baseUrl + "/auth/login");
+    await this.page.goto(process.env.URL + "/auth/login");
   }
 
   async login(email: string, password: string) {

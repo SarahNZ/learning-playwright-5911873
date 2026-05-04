@@ -1,7 +1,7 @@
 import { test, expect } from "@playwright/test";
 
 test("test", async ({ page }) => {
-  await page.goto("http://practicesoftwaretesting.com/");
+  await page.goto(process.env.URL + "/auth/login");
   await page.getByTestId("nav-sign-in").click();
   await page.getByTestId("email").fill("customer@practicesoftwaretesting.com");
   await page.getByTestId("password").fill("welcome01");
