@@ -16,4 +16,5 @@ test("Login with page object", async ({ page }) => {
   await loginPage.goto();
   await loginPage.login("customer@practicesoftwaretesting.com", "welcome01");
   await expect(page.getByTestId("nav-menu")).toContainText("Jane Doe");
+  await expect(page.getByTestId("page-title")).toContainText("My account");
 });
